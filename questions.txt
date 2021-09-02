@@ -1,0 +1,14 @@
+Qual a capital do Brasil?;
+Rio de Janeiro;
+Belo Horizonte;
+Brasilia;
+Salvador;
+Brasilia
+|
+Quem eh o dono do ScoobyDoo?;
+Salsicha;
+Velma;
+Fred;
+Daphine;
+Salsicha
+|
