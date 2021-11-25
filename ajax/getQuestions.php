@@ -17,7 +17,7 @@ $query = mysqli_query($connection, "SELECT * FROM questions");
 //Seleciona dados de cada linha
 while($rows=mysqli_fetch_array($query)){
 
-  echo $rows['question'] . ";" . $rows['answer1'] . ";" . $rows['answer2'] . ";" . $rows['answer3'] . ";" . $rows['answer4'] . ";" . $rows['answerCorrect'] . ";" . $rows['link'] . "|";
+  echo $rows['question'] . ";" . $rows['answer1'] . ";" . $rows['answer2'] . ";" . $rows['answer3'] . ";" . $rows['answer4'] . ";" . $rows['answerCorrect'] . ";" . $rows['link'] . ";" . $rows['id_question'] . "|";
 
 }
 
