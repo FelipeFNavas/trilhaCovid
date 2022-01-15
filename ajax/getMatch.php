@@ -12,7 +12,7 @@ $connection = new mysqli($servername, $username, $password, $database);
 
 $id_player = $_GET['id_player'];
 
-$query = mysqli_query($connection, "SELECT * FROM matches WHERE id_player = '{$id_player}' AND score = 0 ORDER BY DATE DESC LIMIT 1 ");  
+$query = mysqli_query($connection, "SELECT * FROM matches WHERE id_player = '{$id_player}' AND score = 0 ORDER BY id_match DESC LIMIT 1 ");  
 
 
   while($rows=mysqli_fetch_array($query)){
