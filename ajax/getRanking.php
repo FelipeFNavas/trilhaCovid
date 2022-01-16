@@ -6,20 +6,26 @@ include('bdConfig.php');
 $connection = new mysqli($servername, $username, $password, $database);
 
 $query = mysqli_query( $connection, 
-    "SELECT id_match, players.name, sum(score) as soma, count(id_match)as qtd FROM `matches` 
+    "SELECT id_match, matches.id_player, players.name, sum(score) as soma, count(id_match)as qtd FROM `matches` 
     inner join players on matches.id_player = players.id_player
     Where score > 0
     group by players.id_player
     order by soma DESC, players.name"
 );
 
+$player_id = $_GET['id_player'];
+$player_score;
+$player_matches;
+$player_pos;
+$i = 0;
 $name = '';
 $score = '';
 $qtd_partida = '';
 $final = '';
 while ($rows = mysqli_fetch_array($query)) {
+    $i++;
 
-    $name .= substr($rows['name'], 0, 15);
+    $name .= substr($rows['name'], 0, 20);
     $name .= "\n";
 
     $score .= substr($rows['soma'], 0, 4);
@@ -27,6 +33,13 @@ while ($rows = mysqli_fetch_array($query)) {
 
     $qtd_partida .= substr($rows['qtd'], 0, 2);
     $qtd_partida .= "\n";
+
+    if($player_id == $rows['id_player']){
+        $player_score = substr($rows['soma'], 0, 4);
+        $player_matches = substr($rows['qtd'], 0, 2);
+        $player_pos = $i;
+    }
+
     // if (strlen($name) < 10) {
     //     $diff = 10 - strlen($name);
     //     $name .= str_repeat(" ", $diff);
@@ -46,10 +59,32 @@ while ($rows = mysqli_fetch_array($query)) {
     // $final .= "$name\n";
 
 }
-$final = $name . "|" . $score . "|" . $qtd_partida;
 
-echo '<pre>';
-echo "\n";
+
+$query2 = mysqli_query( $connection, 
+    "SELECT  score, date  FROM `matches` WHERE id_player='{$player_id}' and score!=0 order by score desc, id_match desc"
+);
+
+$player_data;
+$player_scoreByMatch;
+$player_nMatches;
+while ($rows = mysqli_fetch_array($query2)) {
+    // $player_data .= substr($rows[''], 10);
+    // $player_data .= date_format($rows['date'], 'd-m-y');
+    $player_data .= $rows['date'];
+    $player_data .= "\n";
+
+    $player_scoreByMatch .= substr($rows['score'], 0, 4);
+    $player_scoreByMatch .= "\n";
+
+    $player_nMatches .= 1;
+    $player_nMatches .= "\n";
+}
+
+// $final = $name . "|" . $score . "|" . $qtd_partida . "|" . $player_data . "|" . $player_scoreByMatch . "|" . $player_pos . "|" . $player_score . "|" . $player_matches;
+$final = $name . "|" . $score . "|" . $qtd_partida . "|" . $player_score . "|" . $player_matches . "|" . $player_pos . "|" . $player_data . "|" . $player_scoreByMatch . "|" . $player_nMatches;
+// echo '<pre>';
+// echo "\n";
 print_r($final);
 
 mysqli_close($connection);
