@@ -22,6 +22,7 @@ $name = '';
 $score = '';
 $qtd_partida = '';
 $final = '';
+// echo '<pre>';
 while ($rows = mysqli_fetch_array($query)) {
     $i++;
 
@@ -40,6 +41,7 @@ while ($rows = mysqli_fetch_array($query)) {
         $player_pos = $i;
     }
 
+    // print_r($rows);
     // if (strlen($name) < 10) {
     //     $diff = 10 - strlen($name);
     //     $name .= str_repeat(" ", $diff);
@@ -68,23 +70,38 @@ $query2 = mysqli_query( $connection,
 $player_data;
 $player_scoreByMatch;
 $player_nMatches;
+$teste;
+// echo '<pre>';
 while ($rows = mysqli_fetch_array($query2)) {
     // $player_data .= substr($rows[''], 10);
     // $player_data .= date_format($rows['date'], 'd-m-y');
-    $player_data .= $rows['date'];
+    
+    // $player_data .= $rows['date'];
+    
+    // $teste = date_create($rows['date']);
+    // $date = date('d/m/Y', strtotime($rows['date']));
+    $date = substr($rows['date'], 0, 10);
+    $player_data .= $date;
     $player_data .= "\n";
 
     $player_scoreByMatch .= substr($rows['score'], 0, 4);
     $player_scoreByMatch .= "\n";
-
+    
     $player_nMatches .= 1;
     $player_nMatches .= "\n";
+    
+    // print_r($rows);
+    
+    // $date = date('d/m/Y', strtotime($rows['date']));
+    // print_r($date);
+    
+    // print_r($rows);
 }
 
 // $final = $name . "|" . $score . "|" . $qtd_partida . "|" . $player_data . "|" . $player_scoreByMatch . "|" . $player_pos . "|" . $player_score . "|" . $player_matches;
 $final = $name . "|" . $score . "|" . $qtd_partida . "|" . $player_score . "|" . $player_matches . "|" . $player_pos . "|" . $player_data . "|" . $player_scoreByMatch . "|" . $player_nMatches;
-// echo '<pre>';
 // echo "\n";
+// 
 print_r($final);
 
 mysqli_close($connection);
