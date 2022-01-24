@@ -1,10 +1,7 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 // Definindo Servidor, Nome de Usuário, Senha e Banco de Dados
-$servername = "localhost";
-$username = 'id17945054_admin';
-$password = 'UchihaItachi42!';
-$database = 'id17945054_trilhacovid';
+include('bdConfig.php');
 
 // Criando a ConexÃ£o
 

@@ -2,10 +2,7 @@
 <?php
 
 // Definindo Servidor, Nome de Usuário, Senha e Banco de Dados
-$servername = "localhost";
-$username = 'id17646567_felipe';
-$password = 'Ol9j$HBH)A9kP0@b';
-$database = 'id17646567_trilhacovid';
+include('bdConfig.php');
 
 // Criando a ConexÃ£o
 $connection = new mysqli($servername, $username, $password, $database);

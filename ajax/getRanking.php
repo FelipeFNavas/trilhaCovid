@@ -26,7 +26,7 @@ $final = '';
 while ($rows = mysqli_fetch_array($query)) {
     $i++;
 
-    $name .= substr($rows['name'], 0, 20);
+    $name .= substr($rows['name'], 0, 17);
     $name .= "\n";
 
     $score .= substr($rows['soma'], 0, 4);
