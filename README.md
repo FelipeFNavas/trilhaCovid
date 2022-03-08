@@ -14,4 +14,4 @@ O desenvolvimento e resultados do projeto estão documentados abaixo:
 </p>
 
 ## Deploy
-O jogo está hospedado no Webhoost em: <a href = 'trilhacovid.000webhostapp.com'>aqui</a>.
+O jogo está hospedado em Webhost.
